@@ -1,3 +1,8 @@
+
+  * {
+    box-sizing: border-box;
+  }
+
 .content {
     max-width: 60%;
     margin: auto;
@@ -7,5 +12,12 @@
 
 div#quiz{
     padding:10px 40px 40px 40px;
-    background-color:#939693;
-    width:50%;}
+    background-color:#dbecdb;
+    width:50%;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  

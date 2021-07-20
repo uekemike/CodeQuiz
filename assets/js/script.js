@@ -4,9 +4,10 @@ var correct = 0;
 var quiz; 
 var quiz_status; 
 var question; 
-var choice; 
-var choices; 
+var option; 
+var options; 
 var multiA, multiB, multiC;
+var timeleft =10;
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -32,15 +33,59 @@ var questions = [
       }
         ];
 
-function displayQuestion(){
-    
+
+function get(id){
+            return document.getElementById(id);
+        }
+
+function showQuestion(){
+    quiz = get("quiz");
+    if (posOfQuiz >= questions.length){
+        quiz.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
+        get("quiz_status").innerHTML = "Quiz is complete";
+        posOfQuiz =0;
+        correct =0;
+        return false;
+    }
+    get("quiz_status").innerHTML ="Question "+(posOfQuiz+1)+" of "+questions.length;
+    question = questions[posOfQuiz].question;
+    multiA =questions[posOfQuiz].a;
+    multiB =questions[posOfQuiz].b;
+    multiC =questions[posOfQuiz].c;
+
+    quiz.innerHTML = "<h3>" +question+ "</h3>";
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='A'>"+multiA+"</label><br>";
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='B'>"+multiB+"</label><br>";
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='C'>"+multiC+"</label><br>";
+    quiz.innerHTML+= "<button onclick='checkAnswer()'>Submit Answer</button>"
 }
 
-var timeleft =10;
+
+function checkAnswer(){
+    options =document.getElementsByName("options");
+    for (var i=0;i<options.length; i++){
+        if(options[i].checked){
+            option =options[i].value;
+        }
+    }
+    if(option == questions[posOfQuiz].answer){
+       
+        correct++;
+      }   
+      posOfQuiz++;
+      
+      showQuestion();
+}
+   
+window.addEventListener("load", showQuestion);
+
+
+function countdownTimer(){
+
 var displayTimerCountDown = setInterval(function(){
     if(timeleft <=0){
         clearInterval(displayTimerCountDown);
-        document.getElementById("countdown").innerHTML ="Expired"
+        document.getElementById("countdown").innerHTML ="Expired"; 
 
     }else{
         document.getElementById("countdown").innerHTML = timeleft;
@@ -48,3 +93,8 @@ var displayTimerCountDown = setInterval(function(){
 
 timeleft = timeleft - 1;
 }, 1000);
+
+//return countdownTimer();
+}
+
+window.addEventListener("load", countdownTimer);
