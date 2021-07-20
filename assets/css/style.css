@@ -16,8 +16,4 @@ div#quiz{
     width:50%;
 }
 
-main {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
+
