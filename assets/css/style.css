@@ -1,0 +1,11 @@
+.content {
+    max-width: 60%;
+    margin: auto;
+    background: white;
+    padding: 10px;
+}
+
+div#quiz{
+    padding:10px 40px 40px 40px;
+    background-color:#939693;
+    width:50%;}

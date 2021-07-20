@@ -32,6 +32,10 @@ var questions = [
       }
         ];
 
+function displayQuestion(){
+    
+}
+
 var timeleft =10;
 var displayTimerCountDown = setInterval(function(){
     if(timeleft <=0){
