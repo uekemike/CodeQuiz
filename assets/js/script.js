@@ -1,3 +1,4 @@
+
 var posOfQuiz = 0;
 var correct = 0;
 var quiz; 
@@ -30,3 +31,16 @@ var questions = [
         answer: "B"
       }
         ];
+
+var timeleft =10;
+var displayTimerCountDown = setInterval(function(){
+    if(timeleft <=0){
+        clearInterval(displayTimerCountDown);
+        document.getElementById("countdown").innerHTML ="Expired"
+
+    }else{
+        document.getElementById("countdown").innerHTML = timeleft;
+    }
+
+timeleft = timeleft - 1;
+}, 1000);
