@@ -16,4 +16,15 @@ div#quiz{
     width:50%;
 }
 
+aside{
+    font-size: 30px;
+    float: right;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1.p{
+    font-family: 'Courier New', Courier, monospace;
+}
+
 

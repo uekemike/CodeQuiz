@@ -8,6 +8,7 @@ var option;
 var options; 
 var multiA, multiB, multiC;
 var timeleft =10;
+
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -47,17 +48,21 @@ function showQuestion(){
         correct =0;
         return false;
     }
+    //get quwestion and possible answer list from array of questions
     get("quiz_status").innerHTML ="Question "+(posOfQuiz+1)+" of "+questions.length;
     question = questions[posOfQuiz].question;
     multiA =questions[posOfQuiz].a;
     multiB =questions[posOfQuiz].b;
     multiC =questions[posOfQuiz].c;
 
+    // create the radio button and append the values of a,b and c 
     quiz.innerHTML = "<h3>" +question+ "</h3>";
-    quiz.innerHTML+= "<label> <input type='radio' name='options' value='A'>"+multiA+"</label><br>";
-    quiz.innerHTML+= "<label> <input type='radio' name='options' value='B'>"+multiB+"</label><br>";
-    quiz.innerHTML+= "<label> <input type='radio' name='options' value='C'>"+multiC+"</label><br>";
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='A'>"+multiA+"</label><br></br>";
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='B'>"+multiB+"</label><br></br>";
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='C'>"+multiC+"</label><br></br>";
     quiz.innerHTML+= "<button onclick='checkAnswer()'>Submit Answer</button>"
+
+    
 }
 
 
@@ -76,8 +81,9 @@ function checkAnswer(){
       
       showQuestion();
 }
-   
-window.addEventListener("load", showQuestion);
+
+//use an evenlistener Load display the questions when the page loads
+//window.addEventListener("load", showQuestion);
 
 
 function countdownTimer(){
@@ -85,10 +91,10 @@ function countdownTimer(){
 var displayTimerCountDown = setInterval(function(){
     if(timeleft <=0){
         clearInterval(displayTimerCountDown);
-        document.getElementById("countdown").innerHTML ="Expired"; 
+        document.getElementsByName("aside").innerHTML ="Expired"; 
 
     }else{
-        document.getElementById("countdown").innerHTML = timeleft;
+        document.getElementsByName("aside").innerHTML = timeleft;
     }
 
 timeleft = timeleft - 1;
@@ -97,4 +103,4 @@ timeleft = timeleft - 1;
 //return countdownTimer();
 }
 
-window.addEventListener("load", countdownTimer);
+//window.addEventListener("load", countdownTimer);
