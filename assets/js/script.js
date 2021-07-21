@@ -45,7 +45,6 @@ function showQuestion(){
         get("quiz_status").innerHTML = "Quiz is complete";
         posOfQuiz =0;
         correct =0;
-        
         return false;
         
     }
@@ -88,10 +87,10 @@ function checkAnswer(){
 function countdownTimer(){
 
     var displayTimerCountDown = setInterval(function(){
-        if(timeleft ===0){
-            clearInterval(displayTimerCountDown);
+        if(timeleft <=0){
+            
             document.getElementById("countdown").innerHTML ="Game Over"; 
-          
+            clearInterval(displayTimerCountDown);
     
         }else{
             document.getElementById("countdown").innerHTML = timeleft + " seconds left";
