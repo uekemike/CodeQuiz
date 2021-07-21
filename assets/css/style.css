@@ -2,7 +2,16 @@
   * {
     box-sizing: border-box;
   }
-
+  header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    background-color: #13293d;
+    color: #fff;
+    margin-bottom: 10px;
+    
+  }
 .content {
     max-width: 60%;
     margin: auto;
@@ -25,6 +34,6 @@ aside{
 
 h1.p{
     font-family: 'Courier New', Courier, monospace;
+    justify-content: space-between;
 }
-
 

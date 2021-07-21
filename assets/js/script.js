@@ -1,4 +1,3 @@
-
 var posOfQuiz = 0;
 var correct = 0;
 var quiz; 
@@ -7,7 +6,7 @@ var question;
 var option; 
 var options; 
 var multiA, multiB, multiC;
-var timeleft =10;
+var timeleft =20;
 
 var questions = [
     {
@@ -57,10 +56,10 @@ function showQuestion(){
 
     // create the radio button and append the values of a,b and c 
     quiz.innerHTML = "<h3>" +question+ "</h3>";
-    quiz.innerHTML+= "<label> <input type='radio' name='options' value='A'>"+multiA+"</label><br></br>";
-    quiz.innerHTML+= "<label> <input type='radio' name='options' value='B'>"+multiB+"</label><br></br>";
-    quiz.innerHTML+= "<label> <input type='radio' name='options' value='C'>"+multiC+"</label><br></br>";
-    quiz.innerHTML+= "<button onclick='checkAnswer()'>Submit Answer</button>"
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='A' onclick='checkAnswer()'>"+multiA+"</label><br></br>";
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='B' onclick='checkAnswer()'>"+multiB+"</label><br></br>";
+    quiz.innerHTML+= "<label> <input type='radio' name='options' value='C' onclick='checkAnswer()'>"+multiC+"</label><br></br>";
+    //quiz.innerHTML+= "<radio onclick='checkAnswer()'>Submit Answer</button>"
 
     
 }
@@ -82,19 +81,16 @@ function checkAnswer(){
       showQuestion();
 }
 
-//use an evenlistener Load display the questions when the page loads
-//window.addEventListener("load", showQuestion);
-
-
 function countdownTimer(){
 
 var displayTimerCountDown = setInterval(function(){
-    if(timeleft <=0){
-        clearInterval(displayTimerCountDown);
-        document.getElementsByName("aside").innerHTML ="Expired"; 
-
+    if(timeleft >0){
+        document.getElementById("countdown").innerHTML = timeleft + " seconds left";
+        
     }else{
-        document.getElementsByName("aside").innerHTML = timeleft;
+        clearInterval(displayTimerCountDown);
+        document.getElementById("countdown").innerHTML ="Game Over"; 
+        
     }
 
 timeleft = timeleft - 1;
@@ -103,4 +99,9 @@ timeleft = timeleft - 1;
 //return countdownTimer();
 }
 
+
+function playGame(){
+    countdownTimer();
+    showQuestion();
+}
 //window.addEventListener("load", countdownTimer);
