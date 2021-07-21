@@ -45,7 +45,9 @@ function showQuestion(){
         get("quiz_status").innerHTML = "Quiz is complete";
         posOfQuiz =0;
         correct =0;
+        
         return false;
+        
     }
     //get quwestion and possible answer list from array of questions
     get("quiz_status").innerHTML ="Question "+(posOfQuiz+1)+" of "+questions.length;
@@ -59,6 +61,8 @@ function showQuestion(){
     quiz.innerHTML+= "<label> <input type='radio' name='options' value='A' onclick='checkAnswer()'>"+multiA+"</label><br></br>";
     quiz.innerHTML+= "<label> <input type='radio' name='options' value='B' onclick='checkAnswer()'>"+multiB+"</label><br></br>";
     quiz.innerHTML+= "<label> <input type='radio' name='options' value='C' onclick='checkAnswer()'>"+multiC+"</label><br></br>";
+    
+
     //quiz.innerHTML+= "<radio onclick='checkAnswer()'>Submit Answer</button>"
 
     
@@ -83,22 +87,26 @@ function checkAnswer(){
 
 function countdownTimer(){
 
-var displayTimerCountDown = setInterval(function(){
-    if(timeleft >0){
-        document.getElementById("countdown").innerHTML = timeleft + " seconds left";
-        
-    }else{
-        clearInterval(displayTimerCountDown);
-        document.getElementById("countdown").innerHTML ="Game Over"; 
-        
-    }
+    var displayTimerCountDown = setInterval(function(){
+        if(timeleft ===0){
+            clearInterval(displayTimerCountDown);
+            document.getElementById("countdown").innerHTML ="Game Over"; 
+          
+    
+        }else{
+            document.getElementById("countdown").innerHTML = timeleft + " seconds left";
+        }
 
 timeleft = timeleft - 1;
 }, 1000);
 
 //return countdownTimer();
 }
-
+function  gameOver(){
+    clearInterval();
+   
+    
+}
 
 function playGame(){
     countdownTimer();
