@@ -10,31 +10,28 @@ var multiA, multiB, multiC;
 var timeleft =20;
 var gameOver= false;
 var gameButton = document.getElementById("gameButton");
-
+var scoresButton = document.getElementById("scoresButton");
 //Creating h1
 var scoreElementTitle = document.createElement("h1");
 scoreElementTitle.setAttribute("id" ,"highScoresTitle")
 scoreElementTitle.innerHTML = "High Scores";
-contentSection.append(scoreElementTitle);
-
+// Creating Outer Score Container to House Scores
+var outerScore = document.createElement("div");
+outerScore.setAttribute("class" ,"scoreContainer");
+outerScore.append(scoreElementTitle);
 // getting high scores. if it does not exist, then an empty
 var highScores = JSON.parse(localStorage.getItem("High Scores")) || [];
 //.map executes a function for each item in ana array
 //=> is an arrow function which is a shorter way of saying function()
 highScores.map(score =>{
-    var outerScore = document.createElement("div");
-    outerScore.setAttribute("class" ,"scoreContainer");
     var scoreElement = document.createElement("div");
     scoreElement.setAttribute("id" ,"scoreElement");
-    outerScore.append(scoreElement);
     scoreElement.append(score.name);
     scoreElement.append(" - ");
     scoreElement.append(score.score);
     scoreElement.append(" points ");
-    contentSection.append(outerScore);
+    outerScore.append(scoreElement);
 })
-
-
 //Where the questions begin
 var questions = [
     {
@@ -72,7 +69,6 @@ function showQuestion(){
         posOfQuiz = 0;
         console.log(correct);
         //correct = 0;
-
     //Game Over code - Create form
     var form = document.createElement("form");
     form.setAttribute("id","submitForm");
@@ -87,7 +83,6 @@ function showQuestion(){
     form.append(nameInput);
     form.append(submitButton);
     contentSection.append(form);
-
     //form actions - How the form is controlled - Form controller
     form.addEventListener("submit",function(submit){
         event.preventDefault();
@@ -105,9 +100,6 @@ function showQuestion(){
             location.reload(true);
         }, 1000);
        })
-
-
-
     //Function for gameover stops
         return false;
     }
@@ -161,14 +153,14 @@ function playGame(){
     countdownTimer();
     showQuestion();
 }
-
 function showScores(){
-    // var outerScore = document.querySelectorAll(".scoreContainer");
-    // console.log(outerScore);
-    // outerScore.forEach(element =>{
-
-    //     outerScore.style.display = "block";
-    // })
-    scoreElementTitle.style.display = "block";
+    contentSection.append(outerScore);
+    scoresButton.innerHTML = 'Hide Scores?';
+    scoresButton.setAttribute('onclick','hideScores()');
+}
+function hideScores(){
+    outerScore.remove();
+    scoresButton.innerHTML = 'Show Scores!';
+    scoresButton.setAttribute('onclick','showScores()');
 }
 //window.addEventListener("load", countdownTimer);
