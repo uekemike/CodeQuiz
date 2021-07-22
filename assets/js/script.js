@@ -10,6 +10,12 @@ var multiA, multiB, multiC;
 var timeleft =20;
 var gameOver= false;
 var gameButton = document.getElementById("gameButton");
+
+// getting high scores. if it does not exist, then an empty
+var highScores = JSON.parse(localStorage.getItem("High Scores")) || [];
+
+
+//Where the questions begin
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -44,9 +50,10 @@ function showQuestion(){
         get("quiz_status").innerHTML = "Quiz is complete";
         gameOver = true;
         posOfQuiz = 0;
-        correct = 0;
+        console.log(correct);
+        //correct = 0;
 
-    //Game Over code
+    //Game Over code - Create form
     var form = document.createElement("form");
     form.setAttribute("id","submitForm");
     var nameInput = document.createElement("input");
@@ -65,8 +72,15 @@ function showQuestion(){
     form.addEventListener("submit",function(submit){
         event.preventDefault();
         var enterUserName = nameInput.value;
-        console.log(enterUserName);
-    })
+        var userScore = {
+            name: enterUserName,
+            score: correct
+        }
+    //everytime the user enters scores , its pushed into an empty array
+        highScores.push(userScore);
+        //registering the  scores in a local storage
+        localStorage.setItem("High Scores", JSON.stringify(highScores));
+       })
 
 
 
