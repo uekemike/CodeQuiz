@@ -7,7 +7,8 @@ var option;
 var options; 
 var multiA, multiB, multiC;
 var timeleft =20;
-
+var gameOver= false;
+var gameButton = document.getElementById('gameButton');
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -23,7 +24,6 @@ var questions = [
         c: 'Both the head section and the body section are correct',
         answer: "C"
       },
-
     {
         question: "The external JavaScript file must contain the script tag.",
         a: 'True',
@@ -32,42 +32,32 @@ var questions = [
         answer: "B"
       }
         ];
-
-
 function get(id){
             return document.getElementById(id);
         }
-
 function showQuestion(){
     quiz = get("quiz");
     if (posOfQuiz >= questions.length){
         quiz.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
         get("quiz_status").innerHTML = "Quiz is complete";
-        posOfQuiz =0;
-        correct =0;
+        gameOver = true;
+        posOfQuiz = 0;
+        correct = 0;
         return false;
-        
     }
-    //get quwestion and possible answer list from array of questions
+    //get question and possible answer list from array of questions
     get("quiz_status").innerHTML ="Question "+(posOfQuiz+1)+" of "+questions.length;
     question = questions[posOfQuiz].question;
     multiA =questions[posOfQuiz].a;
     multiB =questions[posOfQuiz].b;
     multiC =questions[posOfQuiz].c;
-
     // create the radio button and append the values of a,b and c 
     quiz.innerHTML = "<h3>" +question+ "</h3>";
     quiz.innerHTML+= "<label> <input type='radio' name='options' value='A' onclick='checkAnswer()'>"+multiA+"</label><br></br>";
     quiz.innerHTML+= "<label> <input type='radio' name='options' value='B' onclick='checkAnswer()'>"+multiB+"</label><br></br>";
     quiz.innerHTML+= "<label> <input type='radio' name='options' value='C' onclick='checkAnswer()'>"+multiC+"</label><br></br>";
-    
-
     //quiz.innerHTML+= "<radio onclick='checkAnswer()'>Submit Answer</button>"
-
-    
 }
-
-
 function checkAnswer(){
     options =document.getElementsByName("options");
     for (var i=0;i<options.length; i++){
@@ -76,37 +66,30 @@ function checkAnswer(){
         }
     }
     if(option == questions[posOfQuiz].answer){
-       
         correct++;
       }   
       posOfQuiz++;
-      
       showQuestion();
 }
-
 function countdownTimer(){
-
     var displayTimerCountDown = setInterval(function(){
         if(timeleft <=0){
             document.getElementById("countdown").innerHTML ="Game Over"; 
             clearInterval(displayTimerCountDown);
-        }else{
-            timeleft =0;
-            document.getElementById("countdown").innerHTML = timeleft + " seconds left";
+        } else if(gameOver===true){
+            clearInterval(displayTimerCountDown);
+        } else{
+           document.getElementById("countdown").innerHTML = timeleft + " seconds left";
         }
-
-timeleft = timeleft - 1;
-}, 1000);
-
-//return countdownTimer();
+    timeleft = timeleft - 1;
+    return displayTimerCountDown;
+    }, 1000);
 }
-function  gameOver(){
-    clearInterval();
-   
-    
-}
-
 function playGame(){
+    gameButton.innerHTML = 'Restart Game?';
+    gameButton.addEventListener('click', function(event) {
+        location.reload(true);
+    })
     countdownTimer();
     showQuestion();
 }

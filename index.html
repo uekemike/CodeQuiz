@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Javascript Quiz - Test Your Javascript Knowledge</title>
-    <script src="./assets/js/script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    
 </head>
 <body>
     <header><h3 id="countdown"></h3> </header> 
@@ -18,7 +16,7 @@
        <h4>The test contains 3 questions with a time limit. However,
         The test is not official, it's just a nice way to see how much you know, or don't know, about JavaScript.</h5>
         
-        <button type="button" onclick="playGame()"  value="Start Game">Start Game!</button>
+        <button type="button" id="gameButton" onclick="playGame()"  value="Start Game">Start Game!</button>
       
     </main>
     
@@ -27,6 +25,11 @@
        
         <h2 id="quiz_status"></h2>
         <div id="quiz"></div>
-    </section
+    </section>
+
+    <!-- beginscripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+
    </body>
 </html>
