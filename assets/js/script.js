@@ -11,8 +11,28 @@ var timeleft =20;
 var gameOver= false;
 var gameButton = document.getElementById("gameButton");
 
+//Creating h1
+var scoreElementTitle = document.createElement("h1");
+scoreElementTitle.setAttribute("id" ,"highScoresTitle")
+scoreElementTitle.innerHTML = "High Scores";
+contentSection.append(scoreElementTitle);
+
 // getting high scores. if it does not exist, then an empty
 var highScores = JSON.parse(localStorage.getItem("High Scores")) || [];
+//.map executes a function for each item in ana array
+//=> is an arrow function which is a shorter way of saying function()
+highScores.map(score =>{
+    var outerScore = document.createElement("div");
+    outerScore.setAttribute("class" ,"scoreContainer");
+    var scoreElement = document.createElement("div");
+    scoreElement.setAttribute("id" ,"scoreElement");
+    outerScore.append(scoreElement);
+    scoreElement.append(score.name);
+    scoreElement.append(" - ");
+    scoreElement.append(score.score);
+    scoreElement.append(" points ");
+    contentSection.append(outerScore);
+})
 
 
 //Where the questions begin
@@ -68,7 +88,7 @@ function showQuestion(){
     form.append(submitButton);
     contentSection.append(form);
 
-    //form actions - How the form is controlled
+    //form actions - How the form is controlled - Form controller
     form.addEventListener("submit",function(submit){
         event.preventDefault();
         var enterUserName = nameInput.value;
@@ -80,6 +100,10 @@ function showQuestion(){
         highScores.push(userScore);
         //registering the  scores in a local storage
         localStorage.setItem("High Scores", JSON.stringify(highScores));
+        // reload game/page after user store score
+        setTimeout(function(){
+            location.reload(true);
+        }, 1000);
        })
 
 
@@ -136,5 +160,15 @@ function playGame(){
     })
     countdownTimer();
     showQuestion();
+}
+
+function showScores(){
+    // var outerScore = document.querySelectorAll(".scoreContainer");
+    // console.log(outerScore);
+    // outerScore.forEach(element =>{
+
+    //     outerScore.style.display = "block";
+    // })
+    scoreElementTitle.style.display = "block";
 }
 //window.addEventListener("load", countdownTimer);

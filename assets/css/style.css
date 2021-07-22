@@ -37,3 +37,10 @@ h1.p{
     justify-content: space-between;
 }
 
+.scoreContainer, #highScoresTitle{
+  display:none;
+}
+
+#submitForm {
+  padding: 1em;
+}
