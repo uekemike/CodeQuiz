@@ -1,6 +1,7 @@
 var posOfQuiz = 0;
 var correct = 0;
-var quiz; 
+var quiz = document.getElementById("quiz"); 
+var contentSection =document.getElementById("contentSection");
 var quiz_status; 
 var question; 
 var option; 
@@ -8,7 +9,7 @@ var options;
 var multiA, multiB, multiC;
 var timeleft =20;
 var gameOver= false;
-var gameButton = document.getElementById('gameButton');
+var gameButton = document.getElementById("gameButton");
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -37,12 +38,39 @@ function get(id){
         }
 function showQuestion(){
     quiz = get("quiz");
+    //this is when the game is over
     if (posOfQuiz >= questions.length){
         quiz.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
         get("quiz_status").innerHTML = "Quiz is complete";
         gameOver = true;
         posOfQuiz = 0;
         correct = 0;
+
+    //Game Over code
+    var form = document.createElement("form");
+    form.setAttribute("id","submitForm");
+    var nameInput = document.createElement("input");
+    nameInput.setAttribute("id", "userName");
+    nameInput.setAttribute("type","name" );
+    nameInput.setAttribute("placeholder","Enter Your Name" );
+    var submitButton = document.createElement("button");
+    submitButton.setAttribute("id", "submitButton");
+    submitButton.setAttribute("type", "submit");
+    submitButton.innerHTML = "Submit";
+    form.append(nameInput);
+    form.append(submitButton);
+    contentSection.append(form);
+
+    //form actions - How the form is controlled
+    form.addEventListener("submit",function(submit){
+        event.preventDefault();
+        var enterUserName = nameInput.value;
+        console.log(enterUserName);
+    })
+
+
+
+    //Function for gameover stops
         return false;
     }
     //get question and possible answer list from array of questions
@@ -85,7 +113,9 @@ function countdownTimer(){
     return displayTimerCountDown;
     }, 1000);
 }
+//This function is when the game begins
 function playGame(){
+// Reinitializing Game Button
     gameButton.innerHTML = 'Restart Game?';
     gameButton.addEventListener('click', function(event) {
         location.reload(true);
