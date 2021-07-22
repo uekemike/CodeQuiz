@@ -88,11 +88,10 @@ function countdownTimer(){
 
     var displayTimerCountDown = setInterval(function(){
         if(timeleft <=0){
-            
             document.getElementById("countdown").innerHTML ="Game Over"; 
             clearInterval(displayTimerCountDown);
-    
         }else{
+            timeleft =0;
             document.getElementById("countdown").innerHTML = timeleft + " seconds left";
         }
 
