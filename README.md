@@ -13,3 +13,4 @@ For each question, if the user clicks the correct answer, their score will incre
 Once the timer ends OR all the questions have been displayed, the screen will display the "Game over" message.
 
 
+![image](https://user-images.githubusercontent.com/84823764/126728612-1b9c0c32-c27a-42b6-b8ac-e7be073e1f1e.png)
