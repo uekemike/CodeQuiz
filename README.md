@@ -10,6 +10,8 @@ Upon clicking the button, the screen will show the first multiple choice questio
 
 For each question, if the user clicks the correct answer, their score will increment. 
 
-Once the timer ends OR all the questions have been displayed, the screen will display the "Game over" message.
+Once the timer ends OR all the questions have been displayed, the screen will display the "Game over" message and a Form is Displayed
+
+Input your name and click on Show scores to see your high scores
 
 
